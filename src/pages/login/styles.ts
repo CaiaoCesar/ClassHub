@@ -37,17 +37,19 @@ export const style = StyleSheet.create({
     logo:{
         width: 100,
         height: 100,
-        top: 281,
+        top: 265,
     },
 
     button1: {
         width: 237,
         height: 45, 
         alignItems: `center`,
-        top: -82,
+        justifyContent: `center`,
+        flexDirection: "row",
+        top: -132,
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
-        padding: 10,
+        paddingHorizontal: 10,
         gap: 10,
         shadowColor: "#000",
         shadowOffset: {
@@ -64,10 +66,12 @@ export const style = StyleSheet.create({
         width: 237,
         height: 45, 
         alignItems: `center`,
+        justifyContent: `center`,
+        flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
-        top: -323,
-        padding: 10,
+        top: -378,
+        paddingHorizontal: 10,
         gap: 5,
         shadowColor: "#000",
         shadowOffset: {

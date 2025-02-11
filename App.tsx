@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import { ActivityIndicator, View } from 'react-native';
-import Routes from './src/routes/routes'; // Importando as rotas
+import Routes from './src/routes/routes'; 
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -15,5 +15,5 @@ export default function App() {
     );
   }
 
-  return <Routes />; // Usando o componente de rotas
+  return <Routes />;
 }

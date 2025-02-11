@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
-import { Text, View } from 'react-native';
-import Login from './src/pages/login';
+import { ActivityIndicator, View } from 'react-native';
+import Routes from './src/routes/routes'; // Importando as rotas
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -8,8 +8,12 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return null; // Aguarda a fonte carregar antes de exibir a tela
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#A7EA9D" /> 
+      </View>
+    );
   }
 
-  return <Login />;
+  return <Routes />; // Usando o componente de rotas
 }

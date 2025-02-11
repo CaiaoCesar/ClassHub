@@ -6,20 +6,20 @@ import { style } from "./styles"; // Importando o estilo
 import { RootStackParamList } from "../../@types/types"; // Importe o tipo RootStackParamList
 
 // Importe todas as imagens
-import Splash from "../../assets/Splash.png"
-import Splash1 from "../../assets/Splash1.png";
-import Splash2 from "../../assets/Splash2.png";
-import Splash3 from "../../assets/Splash3.png";
-import Splash4 from "../../assets/Splash4.png";
-import Splash5 from "../../assets/Splash5.png";
-import Splash6 from "../../assets/Splash6.png";
-import Splash7 from "../../assets/Splash7.png";
-import Splash8 from "../../assets/Splash8.png";
-import Splash9 from "../../assets/Splash9.png";
-import Splash10 from "../../assets/Splash10.png";
-import Splash11 from "../../assets/Splash11.png";
-import Splash12 from "../../assets/Splash12.png";
-import Splash13 from "../../assets/Splash13.png";
+import Splash from "../../../assets/Splash.png"; // Caminho corrigido
+import Splash1 from "../../../assets/Splash1.png"; // Caminho corrigido
+import Splash2 from "../../../assets/Splash2.png"; // Caminho corrigido
+import Splash3 from "../../../assets/Splash3.png"; // Caminho corrigido
+import Splash4 from "../../../assets/Splash4.png"; // Caminho corrigido
+import Splash5 from "../../../assets/Splash5.png"; // Caminho corrigido
+import Splash6 from "../../../assets/Splash6.png"; // Caminho corrigido
+import Splash7 from "../../../assets/Splash7.png"; // Caminho corrigido
+import Splash8 from "../../../assets/Splash8.png"; // Caminho corrigido
+import Splash9 from "../../../assets/Splash9.png"; // Caminho corrigido
+import Splash10 from "../../../assets/Splash10.png"; // Caminho corrigido
+import Splash11 from "../../../assets/Splash11.png"; // Caminho corrigido
+import Splash12 from "../../../assets/Splash12.png"; // Caminho corrigido
+import Splash13 from "../../../assets/Splash13.png"; // Caminho corrigido
 
 // Defina o tipo da navegação para a tela Splash
 type SplashScreenNavigationProp = StackNavigationProp<RootStackParamList, "Splash">;
@@ -57,7 +57,7 @@ export default function TelaSplash() {
         // Timer para navegar para a tela de Login após um tempo
         const navigationTimer = setTimeout(() => {
             navigation.replace("Login");
-        }, 10000); // 10segundos
+        }, 10000); // 10 segundos
 
         return () => {
             clearInterval(imageInterval);

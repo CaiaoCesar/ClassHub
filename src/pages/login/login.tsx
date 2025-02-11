@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { themes } from "../../global/themes";
 import { style } from "./styles";
-import Logo from "../../assets/logo.png";
-import IconApple from "../../assets/Apple.png";
-import IconGmail from "../../assets/logos_google-gmail.png";
+import Logo from "../../../assets/logo.png";
+import IconApple from "../../../assets/Apple.png";
+import IconGmail from "../../../assets/logos_google-gmail.png";
 
 export default function Login() {
   const [pressionadoGmail, setPressionadoGmail] = useState<boolean>(false);

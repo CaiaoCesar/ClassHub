@@ -1,13 +1,12 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { themes } from "../../global/themes";
-
+import { themes } from "../../global/themes"; 
 
 
 export const style = StyleSheet.create({
     container:{
         flex: 1,
         alignItems:`center`, 
-        justifyContent:`center`
+        justifyContent:`center`,
     },
 
     boxTop:{
@@ -34,10 +33,18 @@ export const style = StyleSheet.create({
         justifyContent: `center`
     },
 
+    boxBotton3:{
+        height: Dimensions.get('window').height/2,
+        width: `100%`,
+        alignItems: `center`,
+        backgroundColor: themes.colors.bgscreen,
+        justifyContent: `center`
+    },
+
     logo:{
         width: 100,
         height: 100,
-        top: 265,
+        top: 325,
     },
 
     button1: {
@@ -46,9 +53,53 @@ export const style = StyleSheet.create({
         alignItems: `center`,
         justifyContent: `center`,
         flexDirection: "row",
-        top: -132,
+        top: -52,
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
+        paddingHorizontal: 10,
+        gap: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 5,
+    },
+
+    button2: {
+        width: 237,
+        height: 45, 
+        alignItems: `center`,
+        justifyContent: `center`,
+        flexDirection: "row", 
+        backgroundColor: themes.colors.secondary,
+        borderRadius: 30,
+        top: -278,
+        
+        gap: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 5,
+    },
+
+    button3: {
+        width: 163,
+        height: 45, 
+        alignItems: `center`,
+        justifyContent: `center`,
+        flexDirection: "row", 
+        backgroundColor: themes.colors.secondary,
+        borderRadius: 30,
+        top: -418,
         paddingHorizontal: 10,
         gap: 10,
         shadowColor: "#000",
@@ -62,40 +113,28 @@ export const style = StyleSheet.create({
         elevation: 4,
     },
 
-    button2: {
-        width: 237,
-        height: 45, 
-        alignItems: `center`,
-        justifyContent: `center`,
-        flexDirection: "row", 
-        backgroundColor: themes.colors.secondary,
-        borderRadius: 30,
-        top: -378,
-        paddingHorizontal: 10,
-        gap: 5,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 4,
-    },
 
-    textGmail:{
+    textAgendar:{
         fontSize: 14,
-        width: 139,
+        width: 141,
         height: 25,
         fontWeight: 400,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main
     },
 
-    textAppleID:{
+    textAgendamentos:{
         fontSize: 14,
-        width: 159,
+        width: 141,
+        height: 25,
+        fontWeight: 400,
+        color: themes.colors.primary,
+        fontFamily: themes.fonts.main
+    },
+
+    textLogout:{
+        fontSize: 14,
+        width: 56,
         height: 25,
         fontWeight: 400,
         color: themes.colors.primary,

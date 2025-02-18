@@ -6,6 +6,7 @@ import Login from "../pages/login/login";
 import Menu from "../pages/menu/menu";
 
 import Agendamentos from "../pages/opcao_agendamentos/agendamentos"; 
+import Agendar from "../pages/opcao_agendar/agendar";
 
 import { RootStackParamList } from "../@types/types"; 
 
@@ -18,6 +19,7 @@ export default function Routes() {
                 <Stack.Screen name="Splash" component={TelaSplash} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Menu" component={Menu} />
+                <Stack.Screen name="Agendar" component={Agendar} />
                 <Stack.Screen name="Agendamentos" component={Agendamentos} />
             </Stack.Navigator>
         </NavigationContainer>

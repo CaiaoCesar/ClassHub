@@ -37,6 +37,7 @@ const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(
           ]}
           onPressIn={() => setPressionadoAgendar(true)}
           onPressOut={() => setPressionadoAgendar(false)}
+          onPress={() => navigation.navigate('Agendar')}
         >
 
           <Text style={style.textAgendar}>{themes.strings.textAgendar}</Text>

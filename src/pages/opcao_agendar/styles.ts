@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { themes } from "../../global/themes"; 
-
+import {themes} from "../../global/themes";
 
 export const style = StyleSheet.create({
     container:{
@@ -18,15 +17,15 @@ export const style = StyleSheet.create({
     },
 
     boxBotton1:{
-        height: Dimensions.get('window').height/3,
+        height: Dimensions.get('window').height/2,
         width: `100%`,
         alignItems: `center`,
         backgroundColor: themes.colors.bgscreen,
         justifyContent: `center`
     },
 
-    boxBotton2:{
-        height: Dimensions.get('window').height/2,
+    boxButtonMessages:{
+        height: Dimensions.get('window').height/13,
         width: `100%`,
         alignItems: `center`,
         backgroundColor: themes.colors.bgscreen,
@@ -42,10 +41,11 @@ export const style = StyleSheet.create({
     },
 
     logo:{
-        width: 100,
-        height: 100,
-        top: 325,
+        width: 60,
+        height: 60,
+        top: 27,
     },
+
 
     button1: {
         width: 237,
@@ -58,26 +58,17 @@ export const style = StyleSheet.create({
         borderRadius: 30,
         paddingHorizontal: 10,
         gap: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
         
-        elevation: 5,
     },
 
-    button2: {
-        width: 237,
+    buttonMessages: {
+        width: 324,
         height: 45, 
         alignItems: `center`,
         justifyContent: `center`,
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
-        borderRadius: 30,
-        top: -278,
+        top: -300,
         
         gap: 10,
         shadowColor: "#000",
@@ -88,19 +79,19 @@ export const style = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         
-        elevation: 5,
+        elevation: 1,
     },
 
-    button3: {
-        width: 163,
+    buttonVoltar: {
+        width: 45,
         height: 45, 
         alignItems: `center`,
         justifyContent: `center`,
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
-        top: -418,
-        paddingHorizontal: 10,
+        right: 140,
+        top: -280,
         gap: 10,
         shadowColor: "#000",
         shadowOffset: {
@@ -111,32 +102,87 @@ export const style = StyleSheet.create({
         shadowRadius: 2.62,
         
         elevation: 4,
+     
+    },
+
+    Voltar: { 
+        width: 25, 
+        height: 38, 
+        borderRadius: 30,
+        
+    },
+
+    buttonCancelar: {
+        width: 260,
+        height: 45, 
+        alignItems: `center`,
+        justifyContent: `center`,
+        flexDirection: "row", 
+        backgroundColor: themes.colors.secondary,
+        borderRadius: 30,
+        top: -118,
+        left: 13,
+        gap: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 1,
     },
 
 
-    textAgendar:{
+    textMsgAgendamentos:{
         fontSize: 14,
-        width: 141,
-        gap: 10,
-        height: 25,
+        width: 320,
+        height: 50,
+        left: 5,
+        top: 12,
         fontWeight: 400,
+        justifyContent: `center`,
+        alignItems: `center`,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main
     },
 
     textAgendamentos:{
-        fontSize: 14,
-        width: 141,
-        height: 25,
+        fontSize: 18,
+        width: 179,
+        top: 32,
+        height: 30,
+        left: 10,
         fontWeight: 400,
+        justifyContent: `center`,
+        alignItems: `center`,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main
     },
 
-    textLogout:{
+    linhaCima:{
+        width: 330,
+        height: 100,
+        top: 10,
+    },
+
+    linhaBaixo:{
+        width: 334,
+        height: 100,
+        left: 73,
+        justifyContent: `center`,
+        alignItems: `center`,
+        top: -60,
+    },
+
+    textCancelarAgendamento:{
         fontSize: 14,
-        width: 56,
+        width: 190,
         height: 25,
+        justifyContent: `center`,
+        alignItems: `center`,
+        right: 160, 
         fontWeight: 400,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main

@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Button, Dimensions, StyleSheet } from "react-native";
 import {themes} from "../../global/themes";
 
 export const style = StyleSheet.create({
@@ -43,9 +43,57 @@ export const style = StyleSheet.create({
     logo:{
         width: 60,
         height: 60,
-        top: 27,
+        top: -97,
     },
 
+    setaEsquerda:{
+        width: 100,
+        height: 100,
+        right: 25,
+        top: -20,
+    },
+
+    setaDireita:{
+        width: 100,
+        height: 100,
+        right: 25,
+        top: -20,
+    },
+
+    ButtonSetaEsquerda: {
+        width: 50,
+        borderRadius: 10,
+        height: 50,
+        top: -83,
+        left: -138,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 5,
+    },
+
+    ButtonSetaDireita: {
+        width: 50,
+        borderRadius: 10,
+        top: -134,
+        height: 50,
+        right: -138,
+        gap: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 5,
+    },
 
     button1: {
         width: 237,
@@ -91,7 +139,7 @@ export const style = StyleSheet.create({
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
         right: 140,
-        top: -280,
+        top: -160,
         gap: 10,
         shadowColor: "#000",
         shadowOffset: {
@@ -110,28 +158,6 @@ export const style = StyleSheet.create({
         height: 38, 
         borderRadius: 30,
         
-    },
-
-    buttonCancelar: {
-        width: 260,
-        height: 45, 
-        alignItems: `center`,
-        justifyContent: `center`,
-        flexDirection: "row", 
-        backgroundColor: themes.colors.secondary,
-        borderRadius: 30,
-        top: -118,
-        left: 13,
-        gap: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 1,
     },
 
 
@@ -164,7 +190,7 @@ export const style = StyleSheet.create({
     linhaCima:{
         width: 330,
         height: 100,
-        top: 10,
+        top: -170,
     },
 
     linhaBaixo:{
@@ -175,14 +201,36 @@ export const style = StyleSheet.create({
         alignItems: `center`,
         top: -60,
     },
+    
+    buttonAgendar: {
+        width: 200,
+        height: 45, 
+        alignItems: `center`,
+        justifyContent: `center`,
+        flexDirection: "row", 
+        backgroundColor: themes.colors.secondary,
+        borderRadius: 30,
+        top: -118,
+        left: 13,
+        gap: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        
+        elevation: 1,
+    },
 
-    textCancelarAgendamento:{
+    agendarText:{
         fontSize: 14,
         width: 190,
         height: 25,
         justifyContent: `center`,
         alignItems: `center`,
-        right: 160, 
+        right: 115, 
         fontWeight: 400,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main

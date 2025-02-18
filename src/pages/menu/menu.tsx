@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Text, View, Image, TouchableOpacity} from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../@types/types";
 
 import {themes} from "../../global/themes"; 
 import {style} from "./styles"; 
@@ -10,8 +13,11 @@ import Logo from "../../../assets/logo.png";
 import IconLogout from "../../../assets/iconLogout.png";
 
 export default function Menu() {
+const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const [pressionadoAgendar, setPressionadoAgendar] = useState<boolean>(false);
   const [pressionadoAgendamento, setPressionadoAgendamento] = useState<boolean>(false);
+  const [pressionadoLogout, setPressionadoLogout] = useState<boolean>(false);
 
   return (
     <View style={style.container}>
@@ -46,6 +52,7 @@ export default function Menu() {
           ]}
           onPressIn={() => setPressionadoAgendamento(true)}
           onPressOut={() => setPressionadoAgendamento(false)}
+          onPress={() => navigation.navigate('Agendamentos')}
         >
 
           <Text style={style.textAgendamentos}>{themes.strings.textAgendamentos}</Text>
@@ -57,10 +64,11 @@ export default function Menu() {
         <TouchableOpacity
           style={[
             style.button3,
-            { backgroundColor: pressionadoAgendamento ? themes.colors.primary : themes.colors.secondary },
+            { backgroundColor: pressionadoLogout? themes.colors.primary : themes.colors.secondary },
           ]}
-          onPressIn={() => setPressionadoAgendamento(true)}
-          onPressOut={() => setPressionadoAgendamento(false)}
+          onPressIn={() => setPressionadoLogout(true)}
+          onPressOut={() => setPressionadoLogout(false)}
+          onPress={() => navigation.navigate('Login')}
         >
           <Image
             source={IconLogout}

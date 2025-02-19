@@ -9,7 +9,13 @@ export const themes = {
         secondary: "#FFFFFFCC",
 
         //cor de fundo do app
-        bgscreen: "#A7EA9D"
+        bgscreen: "#A7EA9D",
+
+        fontEspecial:  "#FFFFFF",
+
+        shadow: "#000",
+
+        transparency: "background: rgba(167, 234, 157, 0.75)",
     },
 
     
@@ -38,9 +44,9 @@ export const themes = {
 
         textCancelarAgendamento: "Cancelar Agendamento",
 
-        confirmaCancelamento: "Agendamento cancelado com sucesso.",
+        confirmaCancelamento: "Agendamento cancelado\n \t\t\t\t\t\t\t\t\tcom sucesso.",
 
-        confirmaAgendamento: "Agendamento efetuado com sucesso.",
+        confirmaAgendamento: "Agendamento efetuado\n \t\t\t\t\t\t\t\t\tcom sucesso.",
 
         confirma: "Ok",
 

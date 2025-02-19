@@ -62,11 +62,11 @@ export const style = StyleSheet.create({
 
     ButtonSetaEsquerda: {
         width: 50,
-        borderRadius: 10,
+        borderRadius: 20,
         height: 50,
         top: -83,
         left: -138,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -79,12 +79,12 @@ export const style = StyleSheet.create({
 
     ButtonSetaDireita: {
         width: 50,
-        borderRadius: 10,
+        borderRadius: 20,
         top: -134,
         height: 50,
         right: -138,
         gap: 10,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -119,7 +119,7 @@ export const style = StyleSheet.create({
         top: -300,
         
         gap: 10,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -140,24 +140,12 @@ export const style = StyleSheet.create({
         borderRadius: 30,
         right: 140,
         top: -160,
-        gap: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 4,
-     
+        gap: 10,    
     },
 
     Voltar: { 
         width: 25, 
         height: 38, 
-        borderRadius: 30,
-        
     },
 
 
@@ -196,7 +184,7 @@ export const style = StyleSheet.create({
     linhaBaixo:{
         width: 334,
         height: 100,
-        left: 73,
+        left: 85,
         justifyContent: `center`,
         alignItems: `center`,
         top: -60,
@@ -213,7 +201,7 @@ export const style = StyleSheet.create({
         top: -118,
         left: 13,
         gap: 10,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -234,5 +222,62 @@ export const style = StyleSheet.create({
         fontWeight: 400,
         color: themes.colors.primary,
         fontFamily: themes.fonts.main
+    },
+
+    confirmaAgendamento:{
+        fontSize: 17,
+        width: 390,
+        height: 59,
+        left: 80,
+        justifyContent: `center`,
+        alignItems: `center`,
+        fontWeight: 400,
+        color: themes.colors.primary,
+        fontFamily: themes.fonts.main
+    },
+
+    confirma:{
+        color: themes.colors.primary,
+        fontSize: 18,
+        width: 30,
+        height: 55,
+        top: 5,
+        left: 6,
+        justifyContent: `center`,
+        alignItems: `center`, 
+        fontWeight: 400,
+        fontFamily: themes.fonts.main
+    },
+
+    verificado:{
+        top: 43,
+        width: 55, 
+        height: 55, 
+        borderRadius: 30,
+    },
+
+    modalOverlay:{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: themes.colors.transparency,
+    },
+
+    modalButton:{
+        backgroundColor: themes.colors.secondary,
+        padding: 10,
+        width: 65,
+        height: 65,
+        top: 160,
+        borderRadius: 40,
+    },
+
+    modalContent:{
+        width: "80%",
+        padding: 20,
+        backgroundColor: themes.colors.secondary,
+        borderRadius: 10,
+        alignItems: "center",
     }
+
 }); 

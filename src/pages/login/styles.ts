@@ -51,7 +51,7 @@ export const style = StyleSheet.create({
         borderRadius: 30,
         paddingHorizontal: 10,
         gap: 10,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -73,7 +73,7 @@ export const style = StyleSheet.create({
         top: -378,
         paddingHorizontal: 10,
         gap: 5,
-        shadowColor: "#000",
+        shadowColor: themes.colors.shadow,
         shadowOffset: {
             width: 0,
             height: 2,

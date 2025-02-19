@@ -15,10 +15,30 @@ import Verificado from "../../../assets/verificacao.png";
 export default function Agendamentos() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const [pressionadoMessages, setPressionadoMessages] = useState<boolean>(false);
   const [pressionadoCancelar, setPressionadoCancelar] = useState<boolean>(false);
   const [pressionadoVoltar, setPressionadoVoltar] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [pressionadoMessages, setPressionadoMessages] = useState<{ [key: string]: boolean }>({});
+
+  // Define o tipo de `messages` como as chaves válidas de `themes.strings`
+  const messages: (keyof typeof themes.strings)[] = [
+    "message1",
+    "message2",
+    "message3",
+    "message4",
+    "message5",
+    "message6",
+    "message7",
+    "message8",
+  ];
+
+  const handlePressIn = (message: string) => {
+    setPressionadoMessages((prev) => ({ ...prev, [message]: true }));
+  };
+
+  const handlePressOut = (message: string) => {
+    setPressionadoMessages((prev) => ({ ...prev, [message]: false }));
+  };
 
   return (
     <View style={style.container}>
@@ -28,109 +48,22 @@ export default function Agendamentos() {
         <Image source={Linha} style={style.linhaCima} resizeMode="contain" />
       </View>
 
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message1}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message2}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message3}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message4}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message5}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message6}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message7}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={style.boxButtonMessages}>
-        <TouchableOpacity
-          style={[
-            style.buttonMessages,
-            { backgroundColor: pressionadoMessages ? themes.colors.primary : themes.colors.secondary },
-          ]}
-          onPressIn={() => setPressionadoMessages(true)}
-          onPressOut={() => setPressionadoMessages(false)}
-        >
-          <Text style={style.textMsgAgendamentos}>{themes.strings.message8}</Text>
-        </TouchableOpacity>
-      </View>
+      {messages.map((message) => (
+        <View key={message} style={style.boxButtonMessages}>
+          <TouchableOpacity
+            style={[
+              style.buttonMessages,
+              { backgroundColor: pressionadoMessages[message] ? themes.colors.primary : themes.colors.secondary },
+            ]}
+            onPressIn={() => handlePressIn(message)}
+            onPressOut={() => handlePressOut(message)}
+          >
+            <Text style={style.textMsgAgendamentos}>
+              {themes.strings[message]}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ))}
 
       <View style={style.buttonCancelar}>
         <TouchableOpacity

@@ -16,16 +16,24 @@ export const style = StyleSheet.create({
         justifyContent:`center`
     },
 
-    boxBotton1:{
-        height: Dimensions.get('window').height/2,
+    boxCalendar:{
+        height: Dimensions.get('window').height/45,
         width: `100%`,
         alignItems: `center`,
         backgroundColor: themes.colors.bgscreen,
         justifyContent: `center`
     },
 
-    boxButtonMessages:{
-        height: Dimensions.get('window').height/13,
+    boxAgendamento:{
+        height: Dimensions.get('window').height/3,
+        width: `100%`,
+        alignItems: `center`,
+        backgroundColor: themes.colors.bgscreen,
+        justifyContent: `center`
+    },
+
+    boxButtonHorarios:{
+        height: Dimensions.get('window').height/47,
         width: `100%`,
         alignItems: `center`,
         backgroundColor: themes.colors.bgscreen,
@@ -33,7 +41,7 @@ export const style = StyleSheet.create({
     },
 
     boxBotton3:{
-        height: Dimensions.get('window').height/2,
+        height: Dimensions.get('window').height/3,
         width: `100%`,
         alignItems: `center`,
         backgroundColor: themes.colors.bgscreen,
@@ -41,59 +49,22 @@ export const style = StyleSheet.create({
     },
 
     logo:{
-        width: 60,
-        height: 60,
-        top: -97,
-    },
-
-    setaEsquerda:{
-        width: 100,
-        height: 100,
-        right: 25,
-        top: -20,
-    },
-
-    setaDireita:{
-        width: 100,
-        height: 100,
-        right: 25,
-        top: -20,
-    },
-
-    ButtonSetaEsquerda: {
         width: 50,
-        borderRadius: 20,
         height: 50,
-        top: -83,
-        left: -138,
-        shadowColor: themes.colors.shadow,
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 5,
+        top: -110,
     },
 
-    ButtonSetaDireita: {
-        width: 50,
-        borderRadius: 20,
-        top: -134,
-        height: 50,
-        right: -138,
-        gap: 10,
-        shadowColor: themes.colors.shadow,
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 5,
-    },
+    setaEsquerda: {
+        width: 24,
+        height: 24,
+        marginRight: 10, // Ajuste conforme necessário
+      },
+      setaDireita: {
+        width: 24,
+        height: 24,
+        marginLeft: 10, // Ajuste conforme necessário
+      },
+
 
     button1: {
         width: 237,
@@ -109,14 +80,14 @@ export const style = StyleSheet.create({
         
     },
 
-    buttonMessages: {
-        width: 324,
-        height: 45, 
+    buttonHorarios: {
+        width: 254,
+        height: 305, 
         alignItems: `center`,
         justifyContent: `center`,
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
-        top: -300,
+        top: -30,
         
         gap: 10,
         shadowColor: themes.colors.shadow,
@@ -131,15 +102,15 @@ export const style = StyleSheet.create({
     },
 
     buttonVoltar: {
-        width: 45,
-        height: 45, 
+        width: 50,
+        height: 50, 
         alignItems: `center`,
         justifyContent: `center`,
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
-        borderRadius: 30,
+        borderRadius: 50,
         right: 140,
-        top: -160,
+        top: -115,
         gap: 10,    
     },
 
@@ -149,12 +120,11 @@ export const style = StyleSheet.create({
     },
 
 
-    textMsgAgendamentos:{
+    textMsgHorarios:{
         fontSize: 14,
-        width: 320,
+        width: 220,
         height: 50,
-        left: 5,
-        top: 12,
+        top: -22,
         fontWeight: 400,
         justifyContent: `center`,
         alignItems: `center`,
@@ -178,7 +148,7 @@ export const style = StyleSheet.create({
     linhaCima:{
         width: 330,
         height: 100,
-        top: -170,
+        top: -120
     },
 
     linhaBaixo:{
@@ -187,8 +157,15 @@ export const style = StyleSheet.create({
         left: 85,
         justifyContent: `center`,
         alignItems: `center`,
-        top: -60,
+        top: -35,
     },
+    
+    linhaMeio:{
+        width: 330,
+        height: 100,
+        top: -235,
+    },
+
     
     buttonAgendar: {
         width: 200,
@@ -198,7 +175,7 @@ export const style = StyleSheet.create({
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
-        top: -118,
+        top: -68,
         left: 13,
         gap: 10,
         shadowColor: themes.colors.shadow,
@@ -209,7 +186,7 @@ export const style = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         
-        elevation: 1,
+        elevation: 0.5,
     },
 
     agendarText:{
@@ -278,6 +255,62 @@ export const style = StyleSheet.create({
         backgroundColor: themes.colors.secondary,
         borderRadius: 10,
         alignItems: "center",
+    },
+
+    spaceCalendar:{
+        backgroundColor: themes.colors.transparency, 
+        width: 200, 
+        height: 100,
+        top: -400,
+        color: themes.colors.primary,
+        fontSize: 18,
+        justifyContent: `center`,
+        alignItems: `center`, 
+        fontWeight: 400,
+        fontFamily: themes.fonts.main
+    },
+
+    calendarHeaderStyle: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: themes.colors.transparency,
+        marginBottom: 10,
+        width: 300,
+    },
+
+    textDayStyle: { 
+        color: themes.colors.secondary,
+        fontFamily: themes.fonts.main, // Certifique-se de que isso está correto
+      },
+
+    daySelected: {
+        color: themes.colors.primary,
+        fontFamily: themes.fonts.main
     }
 
 }); 
+
+
+// Tema do calendário (não é um estilo do React Native, mas sim uma configuração)
+export const calendarTheme = {
+    fontFamily: themes.fonts.main,
+    textMonthFontSize: 18,
+    textMonthFontWeight: 'bold',
+    textMonthColor: themes.colors.fontEspecial,
+    todayTextColor: themes.colors.secondary,
+    selectedDayBackgroundColor: themes.colors.primary,
+    selectedDayTextColor: themes.colors.secondary,
+    arrowColor: themes.colors.primary,
+    calendarBackground: themes.colors.bgscreen,
+    textDayHeaderFontSize: 14,
+    textDayHeaderFontWeight: 'bold',
+    textDayHeaderColor: themes.colors.primary,
+    textDayFontSize: 14,
+    textDayFontWeight: 'normal',
+    textDayColor: themes.colors.primary,
+    textDisabledColor: themes.colors.shadow,
+    arrowStyle: {
+        color: themes.colors.secondary,
+        margin: 0,
+        padding: 0,
+    },
+};

@@ -1,4 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { Calendar } from "react-native-calendars"
+
 import {themes} from "../../global/themes";
 
 export const style = StyleSheet.create({
@@ -243,5 +245,5 @@ export const style = StyleSheet.create({
         backgroundColor: themes.colors.secondary,
         borderRadius: 10,
         alignItems: "center",
-    }
+    },
 }); 

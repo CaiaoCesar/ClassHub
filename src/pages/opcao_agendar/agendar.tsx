@@ -84,9 +84,7 @@ export default function Agendar() {
               onDayPress={setDay}
               markedDates={day ? { [day.dateString]: { selected: true } } : {}}
             />
-            <Text style={style.daySelected}>{day?.dateString}</Text>
         </View>
-        <Text style={style.daySelected}>{day?.dateString}</Text>
       
         <Image source={LinhaMeio} style={style.linhaMeio} resizeMode="contain" />     
       </View>

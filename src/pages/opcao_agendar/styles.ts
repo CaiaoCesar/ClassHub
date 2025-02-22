@@ -282,10 +282,6 @@ export const style = StyleSheet.create({
         fontFamily: themes.fonts.main, // Certifique-se de que isso está correto
       },
 
-    daySelected: {
-        color: themes.colors.primary,
-        fontFamily: themes.fonts.main
-    }
 
 }); 
 

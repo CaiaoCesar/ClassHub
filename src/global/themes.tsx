@@ -20,7 +20,8 @@ export const themes = {
 
     
     fonts:{
-        main: 'Jaro-Regular'
+        main: 'Jaro-Regular',
+        podkova: 'Podkova-Regular',
     },
 
     strings: {

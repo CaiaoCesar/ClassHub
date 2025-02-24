@@ -72,6 +72,8 @@ export const themes = {
         mes11: "Novembro",
         mes12: "Dezembro",
         
+        textHorarios: "Horários",
+
         horario1: "07:30",
         horario2: "09:00",
         horario3: "10:30", 

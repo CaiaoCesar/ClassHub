@@ -20,7 +20,6 @@ export default function Agendamentos() {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [pressionadoMessages, setPressionadoMessages] = useState<{ [key: string]: boolean }>({});
 
-  // Define o tipo de `messages` como as chaves válidas de `themes.strings`
   const messages: (keyof typeof themes.strings)[] = [
     "message1",
     "message2",
@@ -53,12 +52,19 @@ export default function Agendamentos() {
           <TouchableOpacity
             style={[
               style.buttonMessages,
-              { backgroundColor: pressionadoMessages[message] ? themes.colors.primary : themes.colors.secondary },
+              {
+                backgroundColor: pressionadoMessages[message] ? themes.colors.primary : themes.colors.secondary,
+              },
             ]}
             onPressIn={() => handlePressIn(message)}
             onPressOut={() => handlePressOut(message)}
           >
-            <Text style={style.textMsgAgendamentos}>
+            <Text
+              style={[
+                style.textMsgAgendamentos,
+                { color: pressionadoMessages[message] ? themes.colors.fontEspecial : themes.colors.primary },
+              ]}
+            >
               {themes.strings[message]}
             </Text>
           </TouchableOpacity>
@@ -69,14 +75,23 @@ export default function Agendamentos() {
         <TouchableOpacity
           style={[
             style.buttonCancelar,
-            { backgroundColor: pressionadoCancelar ? themes.colors.primary : themes.colors.secondary },
+            {
+              backgroundColor: pressionadoCancelar ? themes.colors.primary : themes.colors.secondary,
+            },
           ]}
           onPressIn={() => setPressionadoCancelar(true)}
           onPressOut={() => setPressionadoCancelar(false)}
           onPress={() => setModalVisible(true)}
         >
           <Image source={Linha} style={style.linhaBaixo} resizeMode="contain" />
-          <Text style={style.textCancelarAgendamento}>{themes.strings.textCancelarAgendamento}</Text>
+          <Text
+            style={[
+              style.textCancelarAgendamento,
+              { color: pressionadoCancelar ? themes.colors.fontEspecial : themes.colors.primary },
+            ]}
+          >
+            {themes.strings.textCancelarAgendamento}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -103,7 +118,9 @@ export default function Agendamentos() {
       <TouchableOpacity
         style={[
           style.buttonVoltar,
-          { backgroundColor: pressionadoVoltar ? themes.colors.primary : themes.colors.secondary },
+          {
+            backgroundColor: pressionadoVoltar ? themes.colors.primary : themes.colors.secondary,
+          },
         ]}
         onPressIn={() => setPressionadoVoltar(true)}
         onPressOut={() => setPressionadoVoltar(false)}

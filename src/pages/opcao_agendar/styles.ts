@@ -2,42 +2,74 @@ import { Button, Dimensions, StyleSheet } from "react-native";
 import {themes} from "../../global/themes";
 
 export const style = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
-        alignItems:`center`, 
-        justifyContent:`center`,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+
+    boxTop: {
+        height: Dimensions.get('window').height / 1,
+        width: '100%',
+        backgroundColor: themes.colors.bgscreen,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
-    boxTop:{
-        height: Dimensions.get('window').height/1,
-        width: `100%`,
+    boxCalendar: {
+        height: Dimensions.get('window').height / 45,
+        width: '100%',
+        alignItems: 'center',
         backgroundColor: themes.colors.bgscreen,
-        alignItems:`center`, 
-        justifyContent:`center`
+        justifyContent: 'center',
     },
 
-    boxCalendar:{
-        height: Dimensions.get('window').height/45,
-        width: `100%`,
-        alignItems: `center`,
+    boxAgendamento: {
+        height: Dimensions.get('window').height / 6,
+        width: '100%',
+        alignItems: 'center',
         backgroundColor: themes.colors.bgscreen,
-        justifyContent: `center`
+        justifyContent: 'center',
     },
 
-    boxAgendamento:{
-        height: Dimensions.get('window').height/3,
-        width: `100%`,
-        alignItems: `center`,
+    horariosContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        width: '100%',
         backgroundColor: themes.colors.bgscreen,
-        justifyContent: `center`
+        top: -85,
+        marginTop: 20,
+        marginBottom: 20,
+        margin: 20,
+        padding: 20,
     },
 
-    boxButtonHorarios:{
-        height: Dimensions.get('window').height/47,
-        width: `100%`,
-        alignItems: `center`,
+    textHorarios: {
+        fontSize: 15,
+        height: 30,
+        fontWeight: '400',
+        top: -178,
+        color: themes.colors.primary,
+        fontFamily: themes.fonts.main,
+    },
+
+    buttonHorarios: {
+        width: '48%', // 2 colunas com um pequeno espaço entre elas
+        height: '20%', // Altura ajustada
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: themes.colors.bgscreen,
-        justifyContent: `center`
+        borderRadius: 30,
+        top: 295,
+        marginBottom: 10, // Espaço entre as linhas
+    },
+    
+    textMsgHorarios: {
+        fontSize: 14,
+        fontWeight: '400',
+        color: themes.colors.primary,
+        fontFamily: themes.fonts.main,
     },
 
     boxBotton3:{
@@ -49,21 +81,24 @@ export const style = StyleSheet.create({
     },
 
     logo:{
-        width: 50,
-        height: 50,
-        top: -110,
+        width: 35,
+        height: 35,
+        top: -60,
     },
 
     setaEsquerda: {
-        width: 24,
-        height: 24,
-        marginRight: 10, // Ajuste conforme necessário
+        width: 70,
+        height: 70,
+        top: 10,
+        marginRight: -10, // Ajuste conforme necessário
       },
-      setaDireita: {
-        width: 24,
-        height: 24,
-        marginLeft: 10, // Ajuste conforme necessário
-      },
+
+    setaDireita: {
+        width: 70,
+        height: 70,
+        top: 10,
+        marginLeft: -10, // Ajuste conforme necessário
+    },
 
 
     button1: {
@@ -80,27 +115,6 @@ export const style = StyleSheet.create({
         
     },
 
-    buttonHorarios: {
-        width: 254,
-        height: 305, 
-        alignItems: `center`,
-        justifyContent: `center`,
-        flexDirection: "row", 
-        backgroundColor: themes.colors.secondary,
-        top: -30,
-        
-        gap: 10,
-        shadowColor: themes.colors.shadow,
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        
-        elevation: 1,
-    },
-
     buttonVoltar: {
         width: 50,
         height: 50, 
@@ -109,27 +123,14 @@ export const style = StyleSheet.create({
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
         borderRadius: 50,
-        right: 140,
-        top: -115,
+        right: 120,
+        top: -235,
         gap: 10,    
     },
 
     Voltar: { 
         width: 25, 
         height: 38, 
-    },
-
-
-    textMsgHorarios:{
-        fontSize: 14,
-        width: 220,
-        height: 50,
-        top: -22,
-        fontWeight: 400,
-        justifyContent: `center`,
-        alignItems: `center`,
-        color: themes.colors.primary,
-        fontFamily: themes.fonts.main
     },
 
     textAgendamentos:{
@@ -148,13 +149,14 @@ export const style = StyleSheet.create({
     linhaCima:{
         width: 330,
         height: 100,
-        top: -120
+        top: -35,
+        zIndex: 1,
     },
 
     linhaBaixo:{
         width: 334,
         height: 100,
-        left: 85,
+        left: 65,
         justifyContent: `center`,
         alignItems: `center`,
         top: -35,
@@ -163,7 +165,7 @@ export const style = StyleSheet.create({
     linhaMeio:{
         width: 330,
         height: 100,
-        top: -235,
+        top: -190,
     },
 
     
@@ -175,8 +177,8 @@ export const style = StyleSheet.create({
         flexDirection: "row", 
         backgroundColor: themes.colors.secondary,
         borderRadius: 30,
-        top: -68,
-        left: 13,
+        top: -188,
+        left: 33,
         gap: 10,
         shadowColor: themes.colors.shadow,
         shadowOffset: {
@@ -259,13 +261,14 @@ export const style = StyleSheet.create({
 
     spaceCalendar:{
         backgroundColor: themes.colors.transparency, 
-        width: 200, 
-        height: 100,
-        top: -400,
+        width: "100%", 
+        height: 200,
+        top: -330,
         color: themes.colors.primary,
-        fontSize: 18,
-        justifyContent: `center`,
-        alignItems: `center`, 
+        fontSize: 14,
+        marginTop: 20, 
+        justifyContent: 'center',
+        alignItems: 'center', 
         fontWeight: 400,
         fontFamily: themes.fonts.main
     },
@@ -274,39 +277,41 @@ export const style = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderBottomColor: themes.colors.transparency,
         marginBottom: 10,
+        height: "45%", 
         width: 300,
+        fontFamily: themes.fonts.main,
     },
 
     textDayStyle: { 
         color: themes.colors.secondary,
         fontFamily: themes.fonts.main, // Certifique-se de que isso está correto
       },
-
-
 }); 
 
 
 // Tema do calendário (não é um estilo do React Native, mas sim uma configuração)
 export const calendarTheme = {
-    fontFamily: themes.fonts.main,
-    textMonthFontSize: 18,
-    textMonthFontWeight: 'bold',
-    textMonthColor: themes.colors.fontEspecial,
-    todayTextColor: themes.colors.secondary,
-    selectedDayBackgroundColor: themes.colors.primary,
-    selectedDayTextColor: themes.colors.secondary,
-    arrowColor: themes.colors.primary,
-    calendarBackground: themes.colors.bgscreen,
-    textDayHeaderFontSize: 14,
-    textDayHeaderFontWeight: 'bold',
-    textDayHeaderColor: themes.colors.primary,
-    textDayFontSize: 14,
-    textDayFontWeight: 'normal',
-    textDayColor: themes.colors.primary,
-    textDisabledColor: themes.colors.shadow,
+    fontFamily: themes.fonts.main, // Fonte principal
+    textMonthFontSize: 14, // Tamanho da fonte do mês
+    textMonthFontWeight: 400, // Peso da fonte do mês
+    textMonthColor: themes.colors.primary, // Cor do texto do mês
+    todayTextColor: themes.colors.secondary, // Cor do texto do dia atual
+    selectedDayBackgroundColor: themes.colors.primary, // Cor de fundo do dia selecionado
+    selectedDayTextColor: themes.colors.fontEspecial, // Cor do texto do dia selecionado
+    arrowColor: themes.colors.primary, // Cor das setas
+    calendarBackground: themes.colors.bgscreen, // Cor de fundo do calendário
+    textDayHeaderFontSize: 14, // Tamanho da fonte dos dias da semana
+    textDayHeaderFontWeight: 'bold', // Peso da fonte dos dias da semana
+    textDayHeaderColor: themes.colors.primary, // Cor dos dias da semana
+    textDayFontSize: 14, // Tamanho da fonte dos dias
+    textDayFontWeight: 'normal', // Peso da fonte dos dias
+    textDayColor: themes.colors.primary, // Cor dos dias
+    textDisabledColor: themes.colors.shadow, // Cor dos dias desabilitados
+    textDayFontFamily: themes.fonts.main, // Fonte para os dias
+    textMonthFontFamily: themes.fonts.main, // Fonte para o mês
+    textDayHeaderFontFamily: themes.fonts.main, // Fonte para os dias da semana
     arrowStyle: {
-        color: themes.colors.secondary,
-        margin: 0,
-        padding: 0,
+        margin: 10,
+        padding: 10,
     },
 };

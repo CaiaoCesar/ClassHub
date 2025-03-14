@@ -12,9 +12,21 @@
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "@react-navigation/stack": "^7.1.1",
+<<<<<<< HEAD
     "expo": "~52.0.36",
     "expo-font": "~13.0.4",
     "expo-splash-screen": "^0.29.22",
+=======
+<<<<<<< HEAD
+    "expo": "^52.0.35",
+    "expo-font": "~13.0.3",
+    "expo-splash-screen": "~0.29.22",
+=======
+    "expo": "~52.0.36",
+    "expo-font": "~13.0.4",
+    "expo-splash-screen": "^0.29.22",
+>>>>>>> 0bf3d7a79aa111f75c9adbf374656f278927b48c
+>>>>>>> 7a153b4 (review)
     "expo-status-bar": "~2.0.1",
     "jest-expo": "~52.0.5",
     "react": "^18.3.1",

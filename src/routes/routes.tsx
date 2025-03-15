@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
+import { CalendlyProvider } from '../contexts/calendlyContext';
+
 import TelaSplash from "../pages/splash/splash"; 
 import Login from "../pages/login/login"; 
 import Menu from "../pages/menu/menu";
@@ -14,14 +16,16 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function Routes() {
     return (
+      <CalendlyProvider>
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Splash" component={TelaSplash} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Menu" component={Menu} />
-                <Stack.Screen name="Agendar" component={Agendar} />
-                <Stack.Screen name="Agendamentos" component={Agendamentos} />
-            </Stack.Navigator>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Splash" component={TelaSplash} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Menu" component={Menu} />
+            <Stack.Screen name="Agendar" component={Agendar} />
+            <Stack.Screen name="Agendamentos" component={Agendamentos} />
+          </Stack.Navigator>
         </NavigationContainer>
+      </CalendlyProvider>
     );
-}
+  }

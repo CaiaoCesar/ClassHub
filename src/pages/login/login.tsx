@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, Image, TouchableOpacity, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../@types/types";
+import { useCalendly } from "../../contexts/calendlyContext";
+import { exchangeCodeForToken } from "../../services/api";
 
 import { themes } from "../../global/themes";
 import { style } from "./styles";
@@ -13,9 +15,32 @@ import IconGmail from "../../../assets/logos_google-gmail.png";
 
 export default function Login() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { setCalendlyToken, setRefreshToken } = useCalendly();
 
   const [pressionadoGmail, setPressionadoGmail] = useState<boolean>(false);
   const [pressionadoApple, setPressionadoApple] = useState<boolean>(false);
+
+  const handleLogin = () => {
+    const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${process.env.EXPO_PUBLIC_CLIENT_ID}&response_type=code&redirect_uri=${process.env.EXPO_PUBLIC_REDIRECT_URL}`;
+    Linking.openURL(authUrl);
+  };
+
+  // Capturar o código de autorização após o redirecionamento
+  Linking.addEventListener('url', async (event) => {
+    const url = event.url;
+    const code = new URL(url).searchParams.get('code');
+
+    if (code) {
+      try {
+        const { access_token, refresh_token } = await exchangeCodeForToken(code);
+        setCalendlyToken(access_token);
+        setRefreshToken(refresh_token);
+        navigation.navigate("Menu");
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
+    }
+  });
 
   return (
     <View style={style.container}>
@@ -31,7 +56,7 @@ export default function Login() {
           ]}
           onPressIn={() => setPressionadoGmail(true)}
           onPressOut={() => setPressionadoGmail(false)}
-          onPress={() => navigation.navigate("Menu")}
+          onPress={handleLogin}
         >
           <Image
             source={IconGmail}
@@ -63,7 +88,7 @@ export default function Login() {
           ]}
           onPressIn={() => setPressionadoApple(true)}
           onPressOut={() => setPressionadoApple(false)}
-          onPress={() => navigation.navigate("Menu")}
+          onPress={handleLogin}
         >
           <Image
             source={IconApple}

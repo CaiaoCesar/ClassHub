@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Text, View, Image, Modal, Pressable } from "react-native";
+import { Text, View, Image, Modal, Pressable, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../@types/types";
+import { createEvent, getAvailableTimes } from "../../services/api"; // Adicione a função getAvailableTimes no serviço
 
 import { Calendar, DateData, LocaleConfig } from "react-native-calendars";
 import { Feather } from "@expo/vector-icons";
+
+import { useCalendly } from "../../contexts/calendlyContext";
 
 import { ptBR } from "../../utils/localeCalendarConfig";
 import { themes } from "../../global/themes";
@@ -24,33 +27,66 @@ import Verificado from "../../../assets/verificacao.png";
 export default function Agendar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  const { calendlyToken } = useCalendly();
+
   const [pressionadoAgendar, setPressionadoAgendar] = useState<boolean>(false);
   const [pressionadoVoltar, setPressionadoVoltar] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState<string | null>(null);
-  const [day, setDay] = useState<DateData>();
+  const [day, setDay] = useState<DateData | null>(null);
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState<string[]>([]);
 
-  const horarios: (keyof typeof themes.strings)[] = [
-    "horario1",
-    "horario2",
-    "horario3",
-    "horario4",
-    "horario5",
-    "horario6",
-  ];
+  // Função para buscar horários disponíveis na data selecionada
+  const handleDayPress = async (date: DateData) => {
+    setDay(date); // Armazena a data selecionada
+    setHorarioSelecionado(null); // Reseta o horário selecionado
 
-  const handleHorarioPress = (horario: string) => {
-    setHorarioSelecionado(horario === horarioSelecionado ? null : horario);
+    if (!calendlyToken) {
+      Alert.alert('Erro', 'Token do Calendly não encontrado.');
+      return;
+    }
+
+    try {
+      // Busca os horários disponíveis para a data selecionada
+      const availableTimes = await getAvailableTimes(date.dateString, calendlyToken);
+      setHorariosDisponiveis(availableTimes); // Atualiza o estado com os horários disponíveis
+    } catch (error) {
+      console.error('Error fetching available times:', error);
+      Alert.alert('Erro', 'Não foi possível carregar os horários disponíveis.');
+      setHorariosDisponiveis([]); // Limpa os horários disponíveis em caso de erro
+    }
+  };
+
+  // Função para agendar um horário
+  const handleAgendar = async () => {
+    if (!calendlyToken) {
+      Alert.alert('Erro', 'Token do Calendly não encontrado.');
+      return;
+    }
+
+    if (day && horarioSelecionado) {
+      const eventData = {
+        start_time: new Date(`${day.dateString}T${horarioSelecionado}:00`).toISOString(),
+        end_time: new Date(`${day.dateString}T${horarioSelecionado}:00`).toISOString(),
+      };
+
+      try {
+        await createEvent(eventData, calendlyToken); // Passa o token para a função
+        setModalVisible(true);
+        setHorariosDisponiveis((prev) => prev.filter((h) => h !== horarioSelecionado));
+      } catch (error) {
+        console.error('Error creating event:', error);
+        Alert.alert('Erro', 'Não foi possível agendar o horário.');
+      }
+    }
   };
 
   return (
     <View style={style.container}>
-      {/* Cabeçalho */}
       <View style={style.boxTop}>
         <Image source={Logo} style={style.logo} resizeMode="contain" />
       </View>
 
-      {/* Calendário */}
       <View style={style.boxCalendar}>
         <Calendar
           style={style.calendar}
@@ -61,46 +97,50 @@ export default function Agendar() {
                 size={35}
                 color={themes.colors.primary}
               />
-                 <Image source={LinhaCima} style={style.linhaCima} resizeMode="contain" />
+              <Image source={LinhaCima} style={style.linhaCima} resizeMode="contain" />
             </View>
           )}
           theme={calendarTheme}
           minDate={new Date().toDateString()}
           hideExtraDays
-          onDayPress={setDay}
+          onDayPress={handleDayPress} // Atualiza a função para buscar horários disponíveis
           markedDates={day ? { [day.dateString]: { selected: true } } : {}}
         />
-        
+
         <Text style={style.textHorarios}>{themes.strings.textHorarios}</Text>
       </View>
 
-      {/* Horários */}
       <View style={style.horariosContainer}>
         <View style={style.horariosGrid}>
           <Image source={LinhaMeio} style={style.linhaMeio} resizeMode="contain" />
-          {horarios.map((horario) => (
-            <Pressable
-              key={horario}
-              style={[
-                style.buttonHorarios,
-                horarioSelecionado === horario && style.buttonHorariosSelected,
-              ]}
-              onPress={() => handleHorarioPress(horario)}
-            >
-              <Text
+          {horariosDisponiveis.length > 0 ? (
+            horariosDisponiveis.map((horario) => (
+              <Pressable
+                key={horario}
                 style={[
-                  style.textMsgHorarios,
-                  horarioSelecionado === horario && style.textMsgHorariosSelected,
+                  style.buttonHorarios,
+                  horarioSelecionado === horario && style.buttonHorariosSelected,
                 ]}
+                onPress={() => setHorarioSelecionado(horario)}
               >
-                {themes.strings[horario]}
-              </Text>
-            </Pressable>
-          ))}
+                <Text
+                  style={[
+                    style.textMsgHorarios,
+                    horarioSelecionado === horario && style.textMsgHorariosSelected,
+                  ]}
+                >
+                  {new Date(horario).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </Text>
+              </Pressable>
+            ))
+          ) : (
+            <Text style={style.textMsgHorarios}>
+              {day ? "Nenhum horário disponível para esta data." : "Selecione uma data."}
+            </Text>
+          )}
         </View>
       </View>
 
-      {/* Rodapé */}
       <View style={style.boxAgendamento}>
         <Image source={LinhaBaixo} style={style.linhaBaixo} resizeMode="contain" />
         <Pressable
@@ -112,7 +152,8 @@ export default function Agendar() {
           ]}
           onPressIn={() => setPressionadoAgendar(true)}
           onPressOut={() => setPressionadoAgendar(false)}
-          onPress={() => setModalVisible(true)}
+          onPress={handleAgendar}
+          disabled={!horarioSelecionado} // Desabilita o botão se nenhum horário estiver selecionado
         >
           <Text
             style={[

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react"; // Adicione o useEffect
+import React, { useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../@types/types";
-import { useCalendly } from "../../contexts/calendlyContext"; // Importe o useCalendly
-import { setupWebhook } from "../../services/api"; // Importe a função setupWebhook
 
 import { themes } from "../../global/themes";
 import { style } from "./styles";
@@ -14,25 +12,10 @@ import IconLogout from "../../../assets/iconLogout.png";
 
 export default function Menu() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { calendlyToken, clearCalendlyToken } = useCalendly(); // Adicione clearCalendlyToken
 
   const [pressionadoAgendar, setPressionadoAgendar] = useState<boolean>(false);
   const [pressionadoAgendamento, setPressionadoAgendamento] = useState<boolean>(false);
   const [pressionadoLogout, setPressionadoLogout] = useState<boolean>(false);
-
-  // Configurar o webhook quando o token estiver disponível
-  useEffect(() => {
-    if (calendlyToken) {
-      setupWebhook('https://sua-api.com/webhook', calendlyToken)
-        .then(() => console.log('Webhook configurado com sucesso'))
-        .catch((error) => console.error('Erro ao configurar webhook:', error));
-    }
-  }, [calendlyToken]);
-
-  const handleLogout = () => {
-    clearCalendlyToken(); // Limpar o token ao fazer logout
-    navigation.navigate("Login");
-  };
 
   return (
     <View style={style.container}>
@@ -90,7 +73,7 @@ export default function Menu() {
           ]}
           onPressIn={() => setPressionadoLogout(true)}
           onPressOut={() => setPressionadoLogout(false)}
-          onPress={handleLogout} // Usar handleLogout ao invés de navegar diretamente
+          onPress={() => navigation.navigate("Login")}
         >
           <Image
             source={IconLogout}

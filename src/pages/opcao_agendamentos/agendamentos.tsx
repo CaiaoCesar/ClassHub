@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, View, Image, Modal, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../@types/types";
-import { getScheduledEvents, cancelEvent } from "../../services/api";
-import { useCalendly } from "../../contexts/calendlyContext"; // Importe o hook useCalendly
 
 import { themes } from "../../global/themes";
 import { style } from "./styles";
@@ -16,40 +14,27 @@ import Verificado from "../../../assets/verificacao.png";
 
 export default function Agendamentos() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { calendlyToken } = useCalendly(); // Acesse o token do Calendly
 
   const [pressionadoCancelar, setPressionadoCancelar] = useState<boolean>(false);
   const [pressionadoVoltar, setPressionadoVoltar] = useState<boolean>(false);
   const [pressionadoConfirmar, setPressionadoConfirmar] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [mensagemSelecionada, setMensagemSelecionada] = useState<string | null>(null);
-  const [events, setEvents] = useState<any[]>([]);
+  const [mensagemSelecionada, setMensagemSelecionada] = useState<string | null>(null); // Estado para a mensagem selecionada
 
-  useEffect(() => {
-    const loadEvents = async () => {
-      try {
-        if (calendlyToken) { // Verifique se o token está disponível
-          const data = await getScheduledEvents(calendlyToken);
-          setEvents(data.collection);
-        }
-      } catch (error) {
-        console.error('Error loading events:', error);
-      }
-    };
+  const messages: (keyof typeof themes.strings)[] = [
+    "message1",
+    "message2",
+    "message3",
+    "message4",
+    "message5",
+    "message6",
+    "message7",
+    "message8",
+  ];
 
-    loadEvents();
-  }, [calendlyToken]); // Adicione calendlyToken como dependência
-
-  const handleCancelEvent = async (eventId: string) => {
-    try {
-      if (calendlyToken) { // Verifique se o token está disponível
-        await cancelEvent(eventId, calendlyToken);
-        setModalVisible(true);
-        setEvents(events.filter(event => event.uri !== eventId));
-      }
-    } catch (error) {
-      console.error('Error canceling event:', error);
-    }
+  const handlePressMessage = (message: string) => {
+    // Se a mensagem já estiver selecionada, desselecione. Caso contrário, selecione.
+    setMensagemSelecionada((prev) => (prev === message ? null : message));
   };
 
   return (
@@ -60,35 +45,37 @@ export default function Agendamentos() {
         <Image source={Linha} style={style.linhaCima} resizeMode="contain" />
       </View>
 
-      {events.map((event) => (
-        <View key={event.uri} style={style.boxButtonMessages}>
+      {/* Lista de mensagens */}
+      {messages.map((message) => (
+        <View key={message} style={style.boxButtonMessages}>
           <TouchableOpacity
             style={[
               style.buttonMessages,
               {
                 backgroundColor:
-                  mensagemSelecionada === event.uri ? themes.colors.primary : themes.colors.secondary,
+                  mensagemSelecionada === message ? themes.colors.primary : themes.colors.secondary,
               },
             ]}
-            onPress={() => setMensagemSelecionada(event.uri)}
+            onPress={() => handlePressMessage(message)} // Alterna a seleção ao clicar
           >
             <Text
               style={[
                 style.textMsgAgendamentos,
                 {
                   color:
-                    mensagemSelecionada === event.uri
+                    mensagemSelecionada === message
                       ? themes.colors.fontEspecial
                       : themes.colors.primary,
                 },
               ]}
             >
-              {new Date(event.start_time).toLocaleString()}
+              {themes.strings[message]}
             </Text>
           </TouchableOpacity>
         </View>
       ))}
 
+      {/* Botão Cancelar */}
       <View style={style.buttonCancelar}>
         <TouchableOpacity
           style={[
@@ -99,7 +86,7 @@ export default function Agendamentos() {
           ]}
           onPressIn={() => setPressionadoCancelar(true)}
           onPressOut={() => setPressionadoCancelar(false)}
-          onPress={() => mensagemSelecionada && handleCancelEvent(mensagemSelecionada)}
+          onPress={() => setModalVisible(true)}
         >
           <Image source={Linha} style={style.linhaBaixo} resizeMode="contain" />
           <Text
@@ -113,6 +100,7 @@ export default function Agendamentos() {
         </TouchableOpacity>
       </View>
 
+      {/* Modal de confirmação */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -147,6 +135,7 @@ export default function Agendamentos() {
         </View>
       </Modal>
 
+      {/* Botão Voltar */}
       <TouchableOpacity
         style={[
           style.buttonVoltar,
